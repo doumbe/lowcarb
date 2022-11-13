@@ -1,2 +1,2 @@
 # lowcarb
-Simulation prix électricité 
+Simulation prix électricité.
