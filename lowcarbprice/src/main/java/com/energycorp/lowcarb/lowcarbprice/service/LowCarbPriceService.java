@@ -17,14 +17,9 @@ public class LowCarbPriceService implements ILowCarbPriceService {
 
     private static final Integer PRECISION = 4;
 
-    private final Random randomValue;
-
-    public LowCarbPriceService(Random randomValue) {
-        this.randomValue = randomValue;
-    }
-
     @Override
     public MomentPrice getPrice() {
+        Random randomValue = new Random();
         double value = randomValue.doubles(1, MIN_VALUE, MAX_VALUE).findAny().orElse(0.8675);
         BigDecimal valueBigdecimal = BigDecimal.valueOf(value);
 
