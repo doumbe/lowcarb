@@ -19,8 +19,10 @@ public class QuotingController {
         this.quotingService = quotingService;
     }
 
-    @GetMapping("/nbkwh")
-    public @ResponseBody BigDecimal getPriceByNbKwh(@RequestParam("nbkwh") int nbkwh) {
+    @GetMapping("/res")
+    //http://localhost:8090/api/quoting/res?nbkwh=10
+    //https://www.baeldung.com/spring-requestparam-vs-pathvariable
+    public @ResponseBody BigDecimal getPriceByNbKwh(@RequestParam int nbkwh) {
         return quotingService.getPriceByNbKwh(BigDecimal.valueOf(nbkwh));
     }
 }

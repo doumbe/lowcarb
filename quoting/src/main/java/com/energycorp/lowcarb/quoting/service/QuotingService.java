@@ -1,11 +1,19 @@
 package com.energycorp.lowcarb.quoting.service;
 
 import com.energycorp.lowcarb.core.bo.MomentPrice;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
 
+@Service
 public class QuotingService {
+
+    private static final String QUOTING_URL = "http://localhost:9090/api/lowcarprice/momentPrice";
 
     private final RestTemplate restTemplate;
 
@@ -39,12 +47,9 @@ public class QuotingService {
     // Méthode qui appel un micro-service Lowcarb
     public BigDecimal getPriceLowCarb() {
         final MomentPrice mp =
-                restTemplate.getForObject("http://localhost:8090/api/lowcarb/latest",
+                restTemplate.getForObject(QUOTING_URL,
                         MomentPrice.class);
-        return BigDecimal.ZERO;
-    }
-    private <T> RestTemplate getRestTemplate(T forObject) {
-        return restTemplate;
+        return mp.getPrice() != null ? mp.getPrice():BigDecimal.ZERO;
     }
 
     // Calcul prix fixe de 10 dollars pour 256kwh pour l’énergie carbonée.
