@@ -21,10 +21,10 @@ public class LowCarbPriceService implements ILowCarbPriceService {
     public MomentPrice getPrice() {
         Random randomValue = new Random();
         double value = randomValue.doubles(1, MIN_VALUE, MAX_VALUE).findAny().orElse(0.8675);
-        BigDecimal valueBigdecimal = BigDecimal.valueOf(value);
+        BigDecimal valueBigDecimal = BigDecimal.valueOf(value);
 
         MomentPrice momentPrice = new MomentPrice();
-        momentPrice.setPrice(valueBigdecimal.round(new MathContext(PRECISION)));
+        momentPrice.setPrice(valueBigDecimal.round(new MathContext(PRECISION)));
         momentPrice.setDate(LocalDate.now());
         return momentPrice;
     }

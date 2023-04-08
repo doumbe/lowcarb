@@ -18,6 +18,14 @@
             </plugin>
         </plugins>
     </build>
+    <dependencies>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.12.4</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
     <name>core</name>
 	<description>Electricity project for Spring Boot</description>
 	<properties>

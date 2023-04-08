@@ -18,7 +18,7 @@ public class LowCarbPriceController {
         this.lowCarbPriceService = lowCarbPriceService;
     }
 
-    @GetMapping(value = "/momentPrice", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/latestPrice", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     MomentPrice getPrice() {
         return lowCarbPriceService.getPrice();
