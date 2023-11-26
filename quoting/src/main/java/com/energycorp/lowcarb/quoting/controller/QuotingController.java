@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("api/quoting")
-public class    QuotingController {
+public class QuotingController {
 
     private final QuotingService quotingService;
 

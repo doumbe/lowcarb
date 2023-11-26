@@ -25,6 +25,12 @@
             <version>2.12.4</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>RELEASE</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
     <name>core</name>
 	<description>Electricity project for Spring Boot</description>

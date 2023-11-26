@@ -2,11 +2,19 @@ package com.energycorp.lowcarb.core.bo;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class MomentPrice {
 
     private BigDecimal price;
     private LocalDate date;
+
+    public MomentPrice(double v, LocalDateTime now) { // code ajouter
+    }
+
+    public MomentPrice() {
+
+    }
 
     public BigDecimal getPrice() {
         return price;
@@ -32,4 +40,7 @@ public class MomentPrice {
                 '}';
     }
 
+    public Object getTimestamp() { // code ajouter
+        return null;
+    }
 }

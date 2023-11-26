@@ -18,13 +18,13 @@ public class LowCarbPriceService implements ILowCarbPriceService {
     private static final Integer PRECISION = 4;
 
     @Override
-    public MomentPrice getPrice() {
+    public MomentPrice getMomentPrice() {
         Random randomValue = new Random();
-        double value = randomValue.doubles(1, MIN_VALUE, MAX_VALUE).findAny().orElse(0.8675);
-        BigDecimal valueBigDecimal = BigDecimal.valueOf(value);
+        //double value = randomValue.doubles(1, MIN_VALUE, MAX_VALUE).findAny().orElse(0.8675);
+        BigDecimal valueBigDecimal = BigDecimal.valueOf(randomValue.doubles(1, MIN_VALUE, MAX_VALUE).findAny().orElse(0.8675)).round(new MathContext(PRECISION));
 
         MomentPrice momentPrice = new MomentPrice();
-        momentPrice.setPrice(valueBigDecimal.round(new MathContext(PRECISION)));
+        momentPrice.setPrice(valueBigDecimal);
         momentPrice.setDate(LocalDate.now());
         return momentPrice;
     }

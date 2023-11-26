@@ -1,6 +1,7 @@
 package com.energycorp.lowcarb.lowcarbprice.controller;
 
 import com.energycorp.lowcarb.core.bo.MomentPrice;
+import com.energycorp.lowcarb.lowcarbprice.service.ILowCarbPriceService;
 import com.energycorp.lowcarb.lowcarbprice.service.LowCarbPriceService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,16 +13,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("api/lowcarprice")
 public class LowCarbPriceController {
 
-    private final LowCarbPriceService lowCarbPriceService;
+   private final ILowCarbPriceService iLowCarbPriceService;
 
-    public LowCarbPriceController(LowCarbPriceService lowCarbPriceService) {
-        this.lowCarbPriceService = lowCarbPriceService;
+    public LowCarbPriceController(ILowCarbPriceService iLowCarbPriceService) {
+        this.iLowCarbPriceService = iLowCarbPriceService;
     }
+
 
     @GetMapping(value = "/latestPrice", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    MomentPrice getPrice() {
-        return lowCarbPriceService.getPrice();
+    MomentPrice getMomentPrice() {
+        return iLowCarbPriceService.getMomentPrice();
     }
 
         /*

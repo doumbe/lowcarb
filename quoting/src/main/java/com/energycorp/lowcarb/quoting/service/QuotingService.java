@@ -2,6 +2,8 @@ package com.energycorp.lowcarb.quoting.service;
 
 import com.energycorp.lowcarb.core.bo.MomentPrice;
 import com.energycorp.lowcarb.core.bo.ProductOfferingPrice;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.reactive.function.client.WebClientCustomizer;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -10,10 +12,17 @@ import java.math.BigDecimal;
 @Service
 public class QuotingService {
 
-    private static final String QUOTING_URL_LOCARBPRICE = "http://localhost:9090/api/lowcarprice/latestPrice";
-    private static final String QUOTING_URL_COALFIRED = "http://localhost:3000/platform/productCatalogManagement/v4/productOfferingPrice/block-256-offer-price";
+    //QuotingServiceConstants quotingServiceConstants;
+    //static final String QUOTING_URL_LOCARBPRICE = "http://localhost:9090/api/lowcarprice/latestPrice";
+    @Value("${quoting.url.locarbprice}")
+    private String urlLocarbprice;
+
+    @Value("${quoting.url.coalfired}")
+    private String urlCoalfired;
+    //private static final String QUOTING_URL_COALFIRED = "http://localhost:3000/platform/productCatalogManagement/v4/productOfferingPrice/block-256-offer-price";
 
     private final RestTemplate restTemplate;
+
 
     public QuotingService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
@@ -25,7 +34,6 @@ public class QuotingService {
         BigDecimal priceKwhMixEnergie = getPriceMixEnergie(nbkwh);
 
         return nbkwh.multiply(priceKwhMixEnergie);
-
 
         //return priceKwhMixEnergie.floatValue();
     }
@@ -44,7 +52,7 @@ public class QuotingService {
     // Méthode qui appel un micro-service Lowcarb
     public BigDecimal getPriceLowCarb() {
         final MomentPrice mp =
-                restTemplate.getForObject(QUOTING_URL_LOCARBPRICE,
+                restTemplate.getForObject(urlLocarbprice,
                         MomentPrice.class);
         assert mp != null;
         return mp.getPrice() != null ? mp.getPrice():BigDecimal.ZERO;
@@ -54,7 +62,7 @@ public class QuotingService {
     private BigDecimal getCoalFiredPrice() {
 
         final ProductOfferingPrice productOfferingPrice =
-                restTemplate.getForObject(QUOTING_URL_COALFIRED,
+                restTemplate.getForObject(urlCoalfired,
                         ProductOfferingPrice.class);
         assert productOfferingPrice != null;
         return BigDecimal.valueOf(productOfferingPrice.getPrice().getValue());

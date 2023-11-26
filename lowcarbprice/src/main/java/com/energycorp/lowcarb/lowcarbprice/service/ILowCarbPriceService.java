@@ -4,5 +4,5 @@ import com.energycorp.lowcarb.core.bo.MomentPrice;
 
 public interface ILowCarbPriceService {
 
-    MomentPrice getPrice();
+    MomentPrice getMomentPrice();
 }
