@@ -4,15 +4,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-
 import java.math.BigDecimal;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @RunWith(MockitoJUnitRunner.class)
 public class QuotingServiceTest {
-
-    // Il faut refaire le test en utilisant getPriceLowCarb
 
     @Test
     public void whenBigDecimalCreatedUsingValueOf_thenValueMatches() {
@@ -26,4 +23,5 @@ public class QuotingServiceTest {
     }
 
 }
+
 

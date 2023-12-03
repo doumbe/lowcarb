@@ -3,7 +3,6 @@ package com.energycorp.lowcarb.quoting.service;
 import com.energycorp.lowcarb.core.bo.MomentPrice;
 import com.energycorp.lowcarb.core.bo.ProductOfferingPrice;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.web.reactive.function.client.WebClientCustomizer;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -39,7 +38,7 @@ public class QuotingService {
     }
 
     // Calcul price KwhMix Energie pour obtenir le prix des deux energies
-    private BigDecimal getPriceMixEnergie(BigDecimal nbkw) {
+    BigDecimal getPriceMixEnergie(BigDecimal nbkw) {
 
         BigDecimal priceCoalFired = getCoalFiredPrice(); // l'energie salle
 
